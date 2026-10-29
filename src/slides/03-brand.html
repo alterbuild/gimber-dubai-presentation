@@ -9,7 +9,32 @@
 .s3 .rail{position:absolute;left:26px;top:30px;bottom:96px;width:4px;border-radius:2px;background:var(--teal-m);transform-origin:50% 0}
 .s3 .pr{display:grid;gap:10px;grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(3,1fr) auto}
 .s3 .pr .ph{border-radius:var(--r-md)}
-.s3 .pr .ph>b{inset:0 0 0 auto;width:66%;display:flex;flex-direction:column;justify-content:center;padding:0 18px 0 34px;font:700 30px/1.05 var(--display);background:linear-gradient(to left,rgba(16,40,43,.93) 46%,rgba(16,40,43,0))}
+.s3 .pr .ph>b{inset:0 0 0 auto;width:66%;display:flex;flex-direction:column;justify-content:center;padding:0 18px 0 34px;font:700 30px/1.05 var(--display);background:none}
+.s3 .pr .ph>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.s3 .rc-defs{position:absolute;width:0;height:0}
+/* the three recipes, drawn: the disc pops, the bottle falls in, the drinks rise with a living surface, the ice drops and floats, the garnish spins in, a glint crosses the bottle now and then */
+.s3 .rc-disc,.s3 .rc-fall,.s3 .rc-liq,.s3 .rc-drop,.s3 .rc-garnish,.s3 .rc-logo{--t:calc(var(--d,0) * 1ms + 160ms);transform-box:fill-box;transform-origin:50% 50%}
+.s3 .rc-disc{transition:transform .9s var(--spring) var(--t)}
+.s3.pre .rc-disc{transform:scale(0)}
+.s3 .rc-fall{transition:transform 1s var(--spring) var(--t),opacity .35s linear var(--t)}
+.s3.pre .rc-fall{transform:translateY(-46px);opacity:0}
+.s3 .rc-liq{transition:transform 1.4s var(--ease) var(--t)}
+.s3.pre .rc-liq{transform:translateY(100%)}
+.s3 .rc-drop{transition:transform .9s var(--spring) var(--t),opacity .3s linear var(--t)}
+.s3.pre .rc-drop{transform:translateY(-48px);opacity:0}
+.s3 .rc-garnish{transition:transform 1s var(--spring) var(--t)}
+.s3.pre .rc-garnish{transform:scale(0) rotate(-80deg)}
+.s3 .rc-logo{transition:opacity .5s linear var(--t)}
+.s3.pre .rc-logo{opacity:0}
+.s3 .rc-wave{animation:rcwave 2.8s linear infinite}
+@keyframes rcwave{to{transform:translateX(-24px)}}
+.s3 .rc-bob{transform-box:fill-box;transform-origin:50% 50%;animation:rcbob 3.4s ease-in-out var(--bd,0s) infinite}
+@keyframes rcbob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-2.4px) rotate(3deg)}}
+.s3 .rc-glint{opacity:0;animation:rcglint 7s ease-in-out var(--gd,0s) infinite}
+@keyframes rcglint{0%{opacity:0;transform:translateX(-4px) skewX(-18deg)}4%{opacity:.6}15%{opacity:.6;transform:translateX(44px) skewX(-18deg)}19%,100%{opacity:0;transform:translateX(52px) skewX(-18deg)}}
+.s3 .rc-star{transform-box:fill-box;transform-origin:50% 50%;animation:rcstar 3.6s ease-in-out var(--sd,0s) infinite}
+@keyframes rcstar{0%,100%{opacity:.15;transform:scale(.3)}50%{opacity:1;transform:scale(1)}}
+.s3:not(.on) .pr svg *{animation-play-state:paused!important}
 .s3 .pr .ph>b small{display:block;font:600 24px/1.2 var(--sans);margin-top:4px;opacity:.92}
 .s3 .eq{display:flex;align-items:center;gap:8px;font:700 26px/1 var(--sans);white-space:nowrap}
 .s3 .eq .chip{font-size:25px;padding:9px 14px}
@@ -34,6 +59,7 @@
 </style>
 <section class="slide s3" data-sec="1" aria-label="Slide 3, brand and beverage">
   <header class="top"><div class="track"></div><div class="tr"><span class="qtag">Q1 · Brand and beverage</span><i class="lg lg-ed" role="img" aria-label="EDHEC Business School"></i></div></header>
+  <svg class="rc-defs" aria-hidden="true"><defs><image id="rc-logo" width="26" height="5.6" href="{{GIMBER_INK}}"/></defs></svg>
   <h2 class="title" style="--d:0">A profitable Belgian SME with a bold product and flat revenue: GIMBER needs a new market</h2>
   <div class="body">
     <div class="g3">
@@ -45,9 +71,9 @@
         <li class="b l" style="--d:960"><span class="sn">4</span><div><h3>Mission</h3><p>Make the alcohol-free choice the bold one</p></div></li>
       </ol>
       <div class="pr">
-        <div class="ph" style="--d:450"><i class="im-recipe-n1" style="--pos:12% 55%"></i><b>N°1 Original<small>33% ginger · 6.8 g sugar a glass</small></b></div>
-        <div class="ph" style="--d:600"><i class="im-recipe-n2" style="--pos:12% 55%"></i><b>N°2 Brut<small>40% ginger · 3.6 g sugar a glass</small></b></div>
-        <div class="ph" style="--d:750"><i class="im-recipe-n3" style="--pos:12% 55%"></i><b>N°3 Lilly<small>Passion fruit, turmeric · 3.8 g</small></b></div>
+        <div class="ph" style="--d:450">{{ART_N1}}<b>N°1 Original<small>33% ginger · 6.8 g sugar a glass</small></b></div>
+        <div class="ph" style="--d:600">{{ART_N2}}<b>N°2 Brut<small>40% ginger · 3.6 g sugar a glass</small></b></div>
+        <div class="ph" style="--d:750">{{ART_N3}}<b>N°3 Lilly<small>Passion fruit, turmeric · 3.8 g</small></b></div>
         <p class="eq b" style="--d:1100"><span class="chip am">20 ml</span><i>+</i><span class="chip">180 ml water</span><i>=</i><span class="chip ink">1 glass</span></p>
       </div>
       <div class="nm">

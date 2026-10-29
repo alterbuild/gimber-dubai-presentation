@@ -13,6 +13,33 @@
 .s7 .ph7{display:grid;gap:14px;align-content:start}
 .s7 .ph7 li{display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center}
 .s7 .ph7 .ph{width:96px;height:96px;border-radius:50%}
+.s7 .ph7 .ph>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* the four phases, drawn: buildings rise and their windows light up, steam curls, the sun climbs behind the skyline, a ring spreads out of the mosque */
+.s7 .pa-rise,.s7 .pa-pop,.s7 .pa-fade,.s7 .pa-up{--t:calc(var(--d,0) * 1ms + 160ms);transform-box:fill-box}
+.s7 .pa-rise{transform-origin:50% 100%;transition:transform .9s var(--spring) var(--t)}
+.s7.pre .pa-rise{transform:scaleY(0)}
+.s7 .pa-pop{transform-origin:50% 50%;transition:transform .8s var(--spring) var(--t)}
+.s7.pre .pa-pop{transform:scale(0)}
+.s7 .pa-fade{transition:opacity .5s linear var(--t)}
+.s7.pre .pa-fade{opacity:0}
+.s7 .pa-up{transition:transform 1.5s var(--ease) var(--t)}
+.s7.pre .pa-up{transform:translateY(30px)}
+.s7 .pa-star{transform-box:fill-box;transform-origin:50% 50%;animation:pastar 3.4s ease-in-out var(--sd,0s) infinite}
+@keyframes pastar{0%,100%{opacity:.25;transform:scale(.4)}50%{opacity:1;transform:scale(1)}}
+.s7 .pa-flick{animation:paflick var(--fl,3s) ease-in-out var(--fd,0s) infinite alternate}
+@keyframes paflick{from{opacity:1}to{opacity:.3}}
+.s7 .pa-steam{stroke-dasharray:9 7;animation:pasteam 2.4s linear var(--sd,0s) infinite}
+@keyframes pasteam{to{stroke-dashoffset:-32}}
+.s7 .pa-sway{transform-box:view-box;animation:pasway 3.6s ease-in-out infinite alternate}
+@keyframes pasway{from{transform:rotate(-4deg)}to{transform:rotate(5deg)}}
+.s7 .pa-glow{transform-box:fill-box;transform-origin:50% 50%;animation:paglow 4s ease-in-out infinite alternate}
+@keyframes paglow{from{transform:scale(1)}to{transform:scale(1.08)}}
+.s7 .pa-wave{animation:pawave 3.2s linear infinite}
+.s7 .pa-wave2{animation:pawave 4.6s linear infinite reverse}
+@keyframes pawave{to{transform:translateX(-16px)}}
+.s7 .pa-ping{opacity:0;transform-box:view-box;transform-origin:48px 62px;animation:paping 4.5s ease-out var(--pd,0s) infinite}
+@keyframes paping{0%{transform:scale(.18);opacity:.55}100%{transform:scale(1);opacity:0}}
+.s7:not(.on) .ph7 svg *{animation-play-state:paused!important}
 .s7 .ph7 h5{display:flex;align-items:center;gap:10px;font:700 28px/1.1 var(--display);letter-spacing:-.02em}
 .s7 .ph7 h5 i{width:16px;height:16px;border-radius:50%;background:var(--c);flex:none}
 .s7 .ph7 p{font:500 25px/1.25 var(--sans);color:var(--slate);margin-top:4px}
@@ -42,10 +69,10 @@
       </div>
       <ul class="ph7">
         <h4 class="b" style="--d:900">Four phases of targeting</h4>
-        <li class="b r" style="--d:1000"><div class="ph" style="--d:1000"><i class="im-venue-bar-gold" style="--pos:50% 50%"></i></div><div><h5><i></i>Q1 2027 · Showroom</h5><p>Premium hotels and restaurants</p></div></li>
-        <li class="b r" style="--d:1150"><div class="ph" style="--d:1150"><i class="im-persona-sarah" style="--pos:50% 30%"></i></div><div><h5><i></i>Q2 2027 · Volume</h5><p>Wellness professionals, hosts, cafés</p></div></li>
-        <li class="b r" style="--d:1300"><div class="ph" style="--d:1300"><i class="im-dubai-rooftop" style="--pos:50% 50%"></i></div><div><h5><i></i>Q4 2027 · Visibility</h5><p>Rooftops and beach clubs, cool season</p></div></li>
-        <li class="b r" style="--d:1450"><div class="ph" style="--d:1450"><i class="im-culture-mosque" style="--pos:50% 60%"></i></div><div><h5><i></i>2028+ · Widen</h5><p>Families, Abu Dhabi, Sharjah, the Gulf</p></div></li>
+        <li class="b r" style="--d:1000"><div class="ph" style="--d:1000">{{ART_P1}}</div><div><h5><i></i>Q1 2027 · Showroom</h5><p>Premium hotels and restaurants</p></div></li>
+        <li class="b r" style="--d:1150"><div class="ph" style="--d:1150">{{ART_P2}}</div><div><h5><i></i>Q2 2027 · Volume</h5><p>Wellness professionals, hosts, cafés</p></div></li>
+        <li class="b r" style="--d:1300"><div class="ph" style="--d:1300">{{ART_P3}}</div><div><h5><i></i>Q4 2027 · Visibility</h5><p>Rooftops and beach clubs, cool season</p></div></li>
+        <li class="b r" style="--d:1450"><div class="ph" style="--d:1450">{{ART_P4}}</div><div><h5><i></i>2028+ · Widen</h5><p>Families, Abu Dhabi, Sharjah, the Gulf</p></div></li>
       </ul>
     </div>
     <ul class="roles">
