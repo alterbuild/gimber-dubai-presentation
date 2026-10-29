@@ -1,69 +1,80 @@
 <style>
-.s10 .p4{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;height:calc(100% - 94px)}
-.s10 .pp{display:flex;flex-direction:column;min-width:0}
-.s10 .ph10{display:flex;align-items:center;gap:14px}
-.s10 .ph10 .ibx{width:54px;height:54px;border-radius:17px}
-.s10 .ph10 h3{font:700 36px/1 var(--display);letter-spacing:-.025em}
-.s10 .vis{height:196px;margin-top:14px;border-radius:var(--r-lg);overflow:hidden;flex:none}
-.s10 .ladder{background:var(--mist);padding:8px 16px;display:grid;align-content:center}
-.s10 .ladder li{display:grid;grid-template-columns:118px 1fr;gap:12px;align-items:baseline;height:36px;font:600 24px/1 var(--sans);white-space:nowrap}
-.s10 .ladder b{font:700 25px/1 var(--display);letter-spacing:-.02em;text-align:right}
-.s10 .ladder li.hot b{background:var(--amber);border-radius:8px;padding:3px 8px;margin:-3px 0}
-.s10 .flow{background:var(--mist);padding:12px 16px 10px 20px;display:grid;align-content:space-between;position:relative}
-.s10 .flow::before{content:"";position:absolute;left:36px;top:26px;bottom:26px;width:3px;background:var(--teal-m)}
-.s10 .flow li{display:flex;align-items:center;gap:14px;position:relative;font:600 24px/1.1 var(--sans)}
-.s10 .flow li svg{width:34px;height:34px;padding:6px;border-radius:50%;background:var(--teal);color:#fff;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.s10 .flow li:last-child svg{background:var(--amber);color:var(--ink)}
-.s10 .pp .fig{font-size:62px;margin-top:16px;display:block}
+.s10 .mx{display:grid;grid-template-columns:560px minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:36px;height:calc(100% - 94px)}
+/* the hero: the whole GIMBER picture, never cropped, with the product's caption under it */
+.s10 .hero{align-self:start;display:flex;flex-direction:column;border-radius:var(--r-lg);overflow:hidden;background:var(--ink)}
+.s10 .hero .pic{aspect-ratio:694/465;border-radius:0;flex:none}
+.s10 .hero .tagp{position:absolute;right:16px;top:16px;display:flex;align-items:center;gap:10px;padding:7px 20px 7px 7px;border-radius:999px;background:#fff;font:700 30px/1 var(--display);letter-spacing:-.02em}
+.s10 .hero .tagp .ibx{width:46px;height:46px;border-radius:50%}
+.s10 .hero .cap{display:flex;align-items:center;gap:20px;padding:14px 24px 16px;color:#fff}
+.s10 .hero .cap .fig{font-size:62px;color:var(--amber);margin:0}
+.s10 .hero .cap p{display:grid;gap:3px}
+.s10 .hero .cap .lb{font:700 28px/1.15 var(--sans)}
+.s10 .hero .cap .ex{font:500 23px/1.2 var(--sans);color:#C9D9D9}
+/* the other three Ps, as three rows */
+.s10 .ps{display:grid;grid-template-rows:repeat(3,minmax(0,1fr))}
+.s10 .pp{display:grid;grid-template-columns:212px 196px minmax(0,1fr);column-gap:18px;row-gap:8px;align-content:center;padding:11px 0 10px;border-top:3px solid var(--rule)}
+.s10 .pp:first-child{border-top-color:var(--amber)}
+.s10 .ph10{display:flex;align-items:center;gap:10px}
+.s10 .ph10 .ibx{width:46px;height:46px;border-radius:15px}
+.s10 .ph10 h3{font:700 31px/1 var(--display);letter-spacing:-.025em}
+.s10 .pp .fig{font-size:56px;display:block;white-space:nowrap}
 .s10 .pp .fig small{font-size:.42em}
-.s10 .pp .lb{font:700 27px/1.2 var(--sans);margin-top:8px}
-.s10 .pp .ex{font:500 25px/1.25 var(--sans);color:var(--slate);margin-top:6px}
+.s10 .pp .tx{font:500 23px/1.2 var(--sans);color:var(--slate);align-self:center}
+.s10 .pp .tx b{color:var(--ink);font-weight:700;font-size:25px}
+.s10 .pp .row{grid-column:1/-1}
+.s10 .prices{display:flex;justify-content:space-between;align-items:flex-start}
+.s10 .prices li{display:grid;gap:3px;font:600 22px/1.1 var(--sans);color:var(--slate);white-space:nowrap}
+.s10 .prices b{justify-self:start;font:700 27px/1.1 var(--display);letter-spacing:-.02em;color:var(--ink)}
+.s10 .prices li.hot b{background:var(--amber);border-radius:8px;padding:2px 9px;margin:-2px 0 -2px -9px}
+.s10 .chain{display:grid;grid-template-columns:1fr 1fr 1fr 1.36fr}
+.s10 .chain li{position:relative;display:grid;gap:5px;font:600 24px/1.1 var(--sans);white-space:nowrap}
+.s10 .chain li svg{width:36px;height:36px;padding:7px;border-radius:50%;background:var(--teal);color:#fff;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:1}
+.s10 .chain li:last-child svg{background:var(--amber);color:var(--ink)}
+.s10 .chain li:not(:last-child)::after{content:"";position:absolute;left:36px;right:0;top:16px;height:4px;border-radius:2px;background:var(--teal-m)}
+.s10 .asks{display:flex;gap:10px;flex-wrap:wrap}
+.s10 .asks .chip{font-size:24px;padding:8px 16px}
 .s10 .so{margin-top:14px}
 </style>
 <section class="slide s10" data-sec="3" aria-label="Slide 10, marketing mix">
   <header class="top"><div class="track"></div><div class="tr"><span class="qtag">Q6 · Marketing mix</span><i class="lg lg-ed" role="img" aria-label="EDHEC Business School"></i></div></header>
   <h2 class="title" style="--d:0">The four Ps deliver one promise: premium, natural and versatile</h2>
   <div class="body">
-    <div class="p4">
-      <article class="pp">
-        <div class="ph10 b" style="--d:250"><span class="ibx"><svg class="ic"><use href="#i-bottle"/></svg></span><h3>Product</h3></div>
-        <div class="vis ph" style="--d:400"><i class="im-recipe-n1" style="--pos:20% 50%"></i></div>
-        <b class="fig b" style="--d:900">N°1</b>
-        <p class="lb b" style="--d:1000">Original is the hero</p>
-        <p class="ex b" style="--d:1100">200 ml trial and 700 ml; Arabic and English label</p>
-      </article>
-      <article class="pp">
-        <div class="ph10 b" style="--d:350"><span class="ibx am"><svg class="ic"><use href="#i-tag"/></svg></span><h3>Price</h3></div>
-        <ul class="vis ladder b z" style="--d:500">
-          <li><b>AED 49</b>200 ml trial</li>
-          <li class="hot"><b>AED 139</b>700 ml bottle</li>
-          <li><b>AED 90</b>venues, ex-VAT</li>
-          <li><b>AED 125</b>refill, a month</li>
-          <li><b>AED 129</b>gift box</li>
-        </ul>
-        <b class="fig b" style="--d:1000"><small>AED</small> <span class="cnt" style="--d:1000">139</span></b>
-        <p class="lb b" style="--d:1100">about AED 4 a glass</p>
-        <p class="ex b" style="--d:1200">Priced per glass, and never a discount on the 700 ml</p>
-      </article>
-      <article class="pp">
-        <div class="ph10 b" style="--d:450"><span class="ibx"><svg class="ic"><use href="#i-store"/></svg></span><h3>Place</h3></div>
-        <ul class="vis flow b z" style="--d:600">
-          <li><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg>Made in Halle</li>
-          <li><svg viewBox="0 0 24 24"><use href="#i-ship"/></svg>19 days by sea</li>
-          <li><svg viewBox="0 0 24 24"><use href="#i-building"/></svg>One importer</li>
-          <li><svg viewBox="0 0 24 24"><use href="#i-store"/></svg>Venues, grocers, apps</li>
-        </ul>
-        <b class="fig b" style="--d:1100"><span class="cnt" style="--d:1100">60</span> <small>venues</small></b>
-        <p class="lb b" style="--d:1200">by December 2027</p>
-        <p class="ex b" style="--d:1300">Plus 30 premium doors, 4 apps and Drink Dry</p>
-      </article>
-      <article class="pp">
-        <div class="ph10 b" style="--d:550"><span class="ibx am"><svg class="ic"><use href="#i-mega"/></svg></span><h3>Promotion</h3></div>
-        <div class="vis ph" style="--d:700"><i class="im-persona-sarah" style="--pos:50% 14%"></i></div>
-        <b class="fig b" style="--d:1200"><span class="cnt" style="--d:1200">25,000</span></b>
-        <p class="lb b" style="--d:1300">tastings before heavy ads</p>
-        <p class="ex b" style="--d:1400">Permit-holding creators, Gulfood, Ramadan cause</p>
-      </article>
+    <div class="mx">
+      <figure class="hero">
+        <div class="pic ph" style="--d:250"><i class="im-recipe-n1" role="img" aria-label="A GIMBER N°1 Original bottle next to a yellow GIMBER mug with ginger and lemon" style="--pos:50% 50%"></i><span class="tagp b z" style="--d:900"><span class="ibx"><svg class="ic"><use href="#i-bottle"/></svg></span>Product</span></div>
+        <figcaption class="cap b" style="--d:800"><b class="fig">N°1</b><p><b class="lb">Original is the hero</b><span class="ex">200 ml trial and 700 ml; Arabic and English label</span></p></figcaption>
+      </figure>
+      <div class="ps">
+        <article class="pp">
+          <div class="ph10 b" style="--d:450"><span class="ibx am"><svg class="ic"><use href="#i-tag"/></svg></span><h3>Price</h3></div>
+          <b class="fig b" style="--d:700"><small>AED</small> <span class="cnt" style="--d:700">139</span></b>
+          <p class="tx b" style="--d:800"><b>about AED 4 a glass.</b> Priced per glass, and never a discount on the 700 ml</p>
+          <ul class="row prices b" style="--d:950">
+            <li><b>AED 49</b>200 ml trial</li>
+            <li class="hot"><b>AED 139</b>700 ml bottle</li>
+            <li><b>AED 90</b>venues, ex-VAT</li>
+            <li><b>AED 125</b>refill, a month</li>
+            <li><b>AED 129</b>gift box</li>
+          </ul>
+        </article>
+        <article class="pp">
+          <div class="ph10 b" style="--d:650"><span class="ibx"><svg class="ic"><use href="#i-store"/></svg></span><h3>Place</h3></div>
+          <b class="fig b" style="--d:900"><span class="cnt" style="--d:900">60</span> <small>venues</small></b>
+          <p class="tx b" style="--d:1000"><b>by December 2027.</b> Plus 30 premium doors, 4 apps and Drink Dry</p>
+          <ul class="row chain b" style="--d:1150">
+            <li><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg>Made in Halle</li>
+            <li><svg viewBox="0 0 24 24"><use href="#i-ship"/></svg>19 days by sea</li>
+            <li><svg viewBox="0 0 24 24"><use href="#i-building"/></svg>One importer</li>
+            <li><svg viewBox="0 0 24 24"><use href="#i-store"/></svg>Venues, grocers, apps</li>
+          </ul>
+        </article>
+        <article class="pp">
+          <div class="ph10 b" style="--d:850"><span class="ibx am"><svg class="ic"><use href="#i-mega"/></svg></span><h3>Promotion</h3></div>
+          <b class="fig b" style="--d:1100"><span class="cnt" style="--d:1100">25,000</span></b>
+          <p class="tx b" style="--d:1200"><b>tastings before heavy ads</b></p>
+          <p class="row asks b" style="--d:1350"><span class="chip">Permit-holding creators</span><span class="chip am">Gulfood</span><span class="chip">Ramadan cause</span></p>
+        </article>
+      </div>
     </div>
     <p class="so b" style="--d:1700"><b>Consistency</b>A discount bin or a sugary recipe would contradict the positioning, so we left both out.</p>
   </div>

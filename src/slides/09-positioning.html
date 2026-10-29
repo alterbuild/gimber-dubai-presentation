@@ -9,24 +9,38 @@
 .s9 .rtb{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
 .s9 .rtb .chip{font-size:22px;padding:6px 13px}
 .s9 .pm{position:relative}
-.s9 .plot{position:absolute;left:46px;right:6px;top:4px;bottom:54px;border-left:3px solid var(--ink);border-bottom:3px solid var(--ink)}
-.s9 .plot::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to right,transparent 0 calc(25% - 1px),var(--rule) calc(25% - 1px) 25%)}
-.s9 .al{position:absolute;font:700 24px/1 var(--sans);color:var(--slate);white-space:nowrap}
-.s9 .al.xl{left:46px;bottom:6px}.s9 .al.xc{left:50%;bottom:6px;translate:-50% 0;color:var(--ink)}.s9 .al.xr{right:6px;bottom:6px}
-.s9 .al.yt{left:0;top:6px;writing-mode:vertical-rl;rotate:180deg}.s9 .al.yb{left:0;bottom:60px;writing-mode:vertical-rl;rotate:180deg}
-.s9 .call{position:absolute;left:4%;top:3%;padding:4px 0 4px 14px;border-left:6px solid var(--amber);font:700 25px/1.2 var(--sans);font-style:normal;color:var(--amber-d);white-space:nowrap}
-.s9 .pt{position:absolute;left:calc(var(--px)*1%);top:calc(var(--py)*1%);translate:-50% -50%;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
-.s9 .pt .ph{width:84px;height:84px;border-radius:50%;box-shadow:0 0 0 4px #fff,0 0 0 6px var(--rule)}
-.s9 .pt.me{translate:-64px -50%;align-items:center}
-.s9 .pt.me .ph{width:128px;height:128px;box-shadow:0 0 0 6px var(--amber);flex:none}
+/* the map: a soft plot with white grid lines, thin axes with arrowheads, a dashed zone around our space, drawn bubbles for the brands */
+.s9 .plot{position:absolute;left:58px;right:4px;top:4px;bottom:64px;border-radius:24px;background:#F4F7F7}
+.s9 .plot::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(#fff,#fff) 0 50%/100% 3px no-repeat,linear-gradient(#fff,#fff) 25% 0/3px 100% no-repeat,linear-gradient(#fff,#fff) 50% 0/3px 100% no-repeat,linear-gradient(#fff,#fff) 75% 0/3px 100% no-repeat}
+.s9 .yax{position:absolute;left:0;top:4px;bottom:64px;width:44px;display:flex;flex-direction:column;align-items:center;gap:14px;font:700 24px/1 var(--sans);color:var(--slate)}
+.s9 .yax span{writing-mode:vertical-rl;rotate:180deg;white-space:nowrap}
+.s9 .yax span:first-child{color:var(--ink)}
+.s9 .yax i{flex:1;width:3px;border-radius:2px;background:var(--rule);position:relative}
+.s9 .yax i::before{content:"";position:absolute;left:-6px;top:-3px;border:7.5px solid transparent;border-bottom:12px solid var(--rule);border-top:0}
+.s9 .xax{position:absolute;left:58px;right:4px;bottom:8px;display:flex;align-items:center;gap:14px;font:700 24px/1 var(--sans);color:var(--slate)}
+.s9 .xax i{flex:1;height:3px;border-radius:2px;background:var(--rule);position:relative}
+.s9 .xax i:last-of-type::after{content:"";position:absolute;right:-2px;top:-6px;border:7.5px solid transparent;border-left:12px solid var(--rule);border-right:0}
+.s9 .xax b{color:var(--ink)}
+.s9 .zone{position:absolute;left:236px;top:31px;width:342px;height:181px;border:3px dashed var(--amber);border-radius:28px;background:rgba(253,241,213,.8)}
+.s9 .call{position:absolute;left:20px;top:10px;padding:7px 18px 8px;border-radius:999px;background:var(--amber);color:var(--ink);font:700 25px/1.2 var(--sans);font-style:normal;white-space:nowrap}
+.s9 .pt{position:absolute;left:calc(var(--px)*1%);top:calc(var(--py)*1%);translate:-50% -50%;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.s9 .bub{position:relative;width:84px;height:84px;border-radius:50%;overflow:hidden;flex:none;box-shadow:0 0 0 4px #fff,0 0 0 7px var(--rule)}
+.s9 .bub svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.s9 .pt.me{translate:-66px -50%;flex-direction:row;gap:18px;align-items:center}
+.s9 .pt.me .bub{width:132px;height:132px;box-shadow:0 0 0 6px var(--amber)}
 .s9 .pt span{font:700 25px/1.1 var(--sans);white-space:nowrap}
 .s9 .pt span small{display:block;font:600 22px/1.15 var(--sans);color:var(--slate)}
-.s9 .pt.me{flex-direction:row;gap:16px}
-.s9 .pt.me span{font:700 32px/1.05 var(--display);text-align:left;white-space:nowrap}
+.s9 .pt.me span{font:700 34px/1.05 var(--display);text-align:left;white-space:nowrap}
+.s9 .pt.me span small{font:700 25px/1.1 var(--sans);margin-top:4px;color:var(--amber-d)}
 .s9 .pt.dot{flex-direction:row;gap:10px;translate:-10px -50%}
-.s9 .pt.dot::before{content:"";width:20px;height:20px;border-radius:50%;background:var(--soft);flex:none}
+.s9 .pt.dot::before{content:"";width:20px;height:20px;border-radius:50%;background:var(--soft);box-shadow:0 0 0 4px #fff;flex:none}
 .s9 .pt.dot span{font-weight:600;color:var(--slate);font-size:23px}
-.s9 .ringw{position:absolute;left:64px;top:64px;width:128px;height:128px;margin:-64px 0 0 -64px;border-radius:50%;border:4px solid var(--amber);pointer-events:none}
+.s9 .ringw{position:absolute;left:66px;top:66px;width:132px;height:132px;margin:-66px 0 0 -66px;border-radius:50%;border:4px solid var(--amber);pointer-events:none}
+.s9 .cs-glint{opacity:0;animation:csglint 7s ease-in-out var(--gd,2.4s) infinite}
+@keyframes csglint{0%{opacity:0;transform:translateX(-4px) skewX(-18deg)}4%{opacity:.6}15%{opacity:.6;transform:translateX(44px) skewX(-18deg)}19%,100%{opacity:0;transform:translateX(52px) skewX(-18deg)}}
+.s9 .cs-star{transform-box:fill-box;transform-origin:50% 50%;animation:csstar 3.6s ease-in-out var(--sd,0s) infinite}
+@keyframes csstar{0%,100%{opacity:.15;transform:scale(.3)}50%{opacity:1;transform:scale(1)}}
+.s9:not(.on) .pm svg *{animation-play-state:paused!important}
 .s9 .so{margin-top:14px}
 </style>
 <section class="slide s9" data-sec="3" aria-label="Slide 9, positioning and competitors">
@@ -46,17 +60,18 @@
       </div>
       <div class="pm">
         <div class="plot">
+          <i class="zone b z" style="--d:900"></i>
           <em class="call b r" style="--d:1700">Our space: real, social, premium-accessible</em>
-                    <div class="pt dot b z" style="--d:1500;--px:6;--py:91"><span>Sodas, Vimto</span></div>
+          <div class="pt dot b z" style="--d:1500;--px:6;--py:91"><span>Sodas, Vimto</span></div>
           <div class="pt dot b z" style="--d:1450;--px:6;--py:77"><span>Ginger cordial · 1.3</span></div>
-          <div class="pt b z" style="--d:1250;--px:21;--py:45"><div class="ph" style="--d:1250"><i class="im-comp-monin" style="--pos:50% 40%"></i></div><span>Monin syrup<small>AED 1.9 a serve</small></span></div>
+          <div class="pt b z" style="--d:1250;--px:19;--py:45"><div class="bub">{{ART_C1}}</div><span>Monin syrup<small>AED 1.9 a serve</small></span></div>
           <div class="pt dot b z" style="--d:1500;--px:46;--py:68"><span>Kombucha</span></div>
-          <div class="pt b z" style="--d:1350;--px:80;--py:44"><div class="ph" style="--d:1350"><i class="im-comp-lyres" style="--pos:50% 45%"></i></div><span>Lyre’s 0.0%<small>AED 6.2 with mixer</small></span></div>
-          <div class="pt b z" style="--d:1450;--px:86;--py:80"><div class="ph" style="--d:1450"><i class="im-comp-barakat" style="--pos:50% 40%"></i></div><span>Barakat shot<small>AED 7.5, one sip</small></span></div>
-          <div class="pt me b z" style="--d:1000;--px:40;--py:26"><div class="ph" style="--d:1000"><i class="im-n1-mug" style="--pos:30% 50%"></i></div><i class="ringw ring"></i><span>GIMBER<small style="font:700 25px/1.1 var(--sans);display:block;margin-top:4px">AED 4 a glass</small></span></div>
+          <div class="pt b z" style="--d:1350;--px:83;--py:40"><div class="bub">{{ART_C2}}</div><span>Lyre’s 0.0%<small>AED 6.2 with mixer</small></span></div>
+          <div class="pt b z" style="--d:1450;--px:86;--py:80"><div class="bub">{{ART_C3}}</div><span>Barakat shot<small>AED 7.5, one sip</small></span></div>
+          <div class="pt me b z" style="--d:1000;--px:40;--py:30"><div class="bub">{{ART_C4}}</div><i class="ringw ring"></i><span>GIMBER<small>AED 4 a glass</small></span></div>
         </div>
-        <span class="al yt b" style="--d:500">Experiential</span><span class="al yb b" style="--d:500">Functional</span>
-        <span class="al xl b" style="--d:500">Low price</span><span class="al xc b" style="--d:500">Price per drink (AED)</span><span class="al xr b" style="--d:500">Premium price</span>
+        <div class="yax b" style="--d:500"><span>Experiential</span><i></i><span>Functional</span></div>
+        <div class="xax b" style="--d:500"><span>Low price</span><i></i><b>Price per drink (AED)</b><i></i><span>Premium price</span></div>
       </div>
     </div>
     <p class="so b" style="--d:1800"><b>So what</b>Our weakness is awareness and distribution, not the product: the plan starts in venues.</p>

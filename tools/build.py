@@ -5,8 +5,8 @@ Reads:  src/deck.html       the shell: tokens, shared CSS, the slide engine and 
         src/slides/NN-*.html one file per slide (its own <style> and its <section class="slide">), joined in file-name order
         src/notes.js        the speaker notes of every slide (and the questions bank on the last one)
         src/presenter.js, src/presenter.css   the presenter view (second window, timer, panels), injected inside the deck
-        tools/route_map.py, tools/recipe_art.py, tools/phase_art.py   the drawn parts: the dotted map of the cover, the three recipes of
-                            slide 3 and the four phases of slide 7 (the {{ROUTE_*}}, {{ART_N*}} and {{ART_P*}} placeholders)
+        tools/route_map.py, recipe_art.py, phase_art.py, chart_art.py   the drawn parts: the dotted map of the cover, the three recipes of
+                            slide 3, the four phases of slide 7 and the map of slide 9 (the {{ROUTE_*}} and {{ART_*}} placeholders)
         assets/, fonts/     logos, photos and fonts that get embedded
 Output: GIMBER_Dubai_presentation.html, plus an identical index.html (the page that GitHub Pages serves)
 """
@@ -16,6 +16,7 @@ import sys
 import time
 from pathlib import Path
 
+import chart_art
 import phase_art
 import recipe_art
 import route_map
@@ -71,7 +72,7 @@ def main():
         'GIMBER_WHITE': (ASSETS / 'logos' / 'gimber-white.png', 'image/png'),
     }.items():
         html = html.replace('{{%s}}' % key, b64(path, mime))
-    for art in (route_map, recipe_art, phase_art):
+    for art in (route_map, recipe_art, phase_art, chart_art):
         for key, d in art.placeholders().items():
             html = html.replace('{{%s}}' % key, d)
     html = html.replace('{{BUILD}}', time.strftime('%Y%m%d-%H%M%S'))
