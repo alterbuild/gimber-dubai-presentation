@@ -2,7 +2,7 @@
 """Builds GIMBER_Dubai_presentation.pdf from the built deck.
 
 Every slide is rendered with headless Google Chrome in its final state (reduced-motion mode, so no animation is caught half way), at 2x
-resolution, and placed on one 16:9 page. The five part screens of the live deck (the "pour" with the next speaker's name) are added as
+resolution, and placed on one 16:9 page. The five part screens of the live deck (the "pour" with the title of the part) are added as
 pages of their own, where the speaker changes; pass --slides-only to leave them out. The PDF gets bookmarks for every part and slide.
 
 Usage:  python3 tools/build.py && python3 tools/make_pdf.py [--slides-only]
@@ -56,11 +56,9 @@ def main():
         sys.exit('Google Chrome not found at ' + CHROME)
     html = SRC.read_text(encoding='utf-8')
     secl, spk = array(html, 'SECL'), array(html, 'SPK')
-    ini = [''.join(w[0] for w in s.split()) for s in spk]
     sec_js = ('<script>document.addEventListener("DOMContentLoaded",function(){var m=/^#sec(\\d)$/.exec(location.hash);if(!m)return;'
-              'var k=+m[1]-1,SECL=%s,SPK=%s,INI=%s;document.body.classList.add("sec");var c=document.getElementById("curtain");'
-              'c.querySelector(".cn").textContent=m[1];c.querySelector(".ct").innerHTML="<em>Part "+m[1]+" of "+SECL.length+"</em>"+SECL[k]+'
-              '"<small><b class=\\"av p"+m[1]+"\\">"+INI[k]+"</b>"+SPK[k]+(k==0?" continues":" takes over")+"</small>"})</script>') % (json.dumps(secl), json.dumps(spk), json.dumps(ini))
+              'var k=+m[1]-1,SECL=%s;document.body.classList.add("sec");var c=document.getElementById("curtain");'
+              'c.querySelector(".cn").textContent=m[1];c.querySelector(".ct").innerHTML="<em>Part "+m[1]+" of "+SECL.length+"</em>"+SECL[k]})</script>') % json.dumps(secl)
     html = html.replace('</style>', PRINT_CSS + '</style>' + sec_js, 1)
 
     tmp = Path(tempfile.mkdtemp(prefix='gimber_pdf_'))

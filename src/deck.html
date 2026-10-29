@@ -143,11 +143,8 @@ html:-webkit-full-screen body{background:#000}
 .pre .g{opacity:0}.pre .g b{transform:scaleY(0)}
 @media (prefers-reduced-motion: reduce){.slide,.slide *{transition:none!important;animation:none!important}}
 
-/* ambient life once a slide is built: bubbles, a pulse on the key marker, a slow float */
-.bubbles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.bubbles>i{position:absolute;bottom:-60px;left:var(--x);width:var(--s);height:var(--s);border-radius:50%;background:rgba(255,255,255,.2);box-shadow:inset 0 0 0 2px rgba(255,255,255,.42);animation:rise var(--dur) linear var(--dl) infinite}
-@keyframes rise{from{transform:translate3d(0,0,0) scale(.7);opacity:0}12%{opacity:1}to{transform:translate3d(18px,-980px,0) scale(1.1);opacity:0}}
-.slide:not(.on) .bubbles>i,.slide:not(.on) .ring,.slide:not(.on) .float{animation-play-state:paused!important}
+/* ambient life once a slide is built: a pulse on the key marker, a slow float */
+.slide:not(.on) .ring,.slide:not(.on) .float{animation-play-state:paused!important}
 .ring{animation:ring 2.4s ease-out infinite}
 @keyframes ring{0%{transform:scale(1);opacity:.55}100%{transform:scale(2.3);opacity:0}}
 .float{animation:float 6s ease-in-out infinite}
@@ -170,8 +167,6 @@ html:-webkit-full-screen body{background:#000}
 #curtain .c4::before{animation-direction:reverse;animation-duration:4s}
 #curtain .cn{font:700 520px/1 var(--display);letter-spacing:-.06em;margin-left:80px;opacity:.2}
 #curtain .ct{position:absolute;left:520px;right:80px;top:50%;transform:translateY(-50%);font:700 80px/1.08 var(--serif);letter-spacing:-.015em}
-#curtain .ct small{display:flex;align-items:center;gap:16px;font:700 30px/1.2 var(--sans);letter-spacing:0;margin-top:30px}
-#curtain .ct small .av{width:56px;height:56px;font-size:21px}
 #curtain .ct em{display:block;font:600 30px/1.2 var(--sans);font-style:normal;letter-spacing:0;opacity:.75;margin-bottom:20px}
 #tip{position:absolute;z-index:7;background:var(--ink);color:#fff;font:600 20px/1.3 var(--sans);padding:10px 16px;border-radius:12px;pointer-events:none;white-space:nowrap}
 [data-tip]{cursor:help}
@@ -328,12 +323,8 @@ document.querySelectorAll('.slide[data-sec]').forEach(sl=>{
   const c=+sl.dataset.sec,t=sl.querySelector('.track');
   if(t)t.innerHTML=SECS.map((s,i)=>`<i class="${i+1<c?'done':i+1===c?'cur':''}"></i>`).join('')+`<span class="who"><b class="av p${c}">${INI[c-1]}</b>${SPK[c-1]}</span><span class="part">${SECS[c-1]}</span>`;
 });
-/* generated pieces: the glasses of one bottle, the bubbles */
+/* generated pieces: the glasses of one bottle */
 document.querySelectorAll('.glasses').forEach(el=>{const n=+el.dataset.n||35;el.innerHTML=Array.from({length:n},(_,i)=>`<i class="g" style="--i:${i}"><b></b></i>`).join('')});
-document.querySelectorAll('.bubbles').forEach(el=>{
-  const n=+el.dataset.n||14;
-  el.innerHTML=Array.from({length:n},()=>{const s=16+Math.random()*40,d=7+Math.random()*7;return `<i style="--s:${s.toFixed(0)}px;--x:${(Math.random()*96).toFixed(1)}%;--dur:${d.toFixed(1)}s;--dl:${(-Math.random()*d).toFixed(1)}s"></i>`}).join('');
-});
 
 /*{{NOTES}}*/
 
@@ -388,10 +379,11 @@ function counts(sl){
     const m=fin.match(/\d[\d,]*(\.\d+)?/);if(!m)return;
     const tgt=parseFloat(m[0].replace(/,/g,'')),dec=m[1]?m[1].length-1:0,comma=m[0].indexOf(',')>-1;
     const pre=fin.slice(0,m.index),post=fin.slice(m.index+m[0].length);
-    const delay=(parseFloat(el.style.getPropertyValue('--d'))||0)+160,dur=1250,t0=performance.now()+delay;
+    const delay=(parseFloat(el.style.getPropertyValue('--d'))||0)+160,dur=+el.dataset.dur||1250,t0=performance.now()+delay;
     const f=v=>pre+(comma?v.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec}):v.toFixed(dec))+post;
     el.textContent=f(0);
-    const step=now=>{const p=Math.min(1,Math.max(0,(now-t0)/dur));el.textContent=p>=1?fin:f(tgt*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)};
+    const io=el.dataset.ease==='io';  /* ease in and out, to follow something that travels; the default eases out */
+    const step=now=>{const p=Math.min(1,Math.max(0,(now-t0)/dur));el.textContent=p>=1?fin:f(tgt*(io?p*p*(3-2*p):1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)};
     requestAnimationFrame(step);
   });
 }
@@ -412,11 +404,11 @@ function show(n,hold){
   if(!hold)build(s);
 }
 function build(s){if(reduce.matches)return;void s.offsetWidth;s.classList.remove('pre');counts(s)}
-/* the pour: four layers of liquid rise over the slide, the next speaker is named, then they drain away and the new slide is built */
+/* the pour: four layers of liquid rise over the slide, the new part is named, then they drain away and the new slide is built */
 function runCurtain(sec,onCover,onReveal){
   const bars=[...curtain.children],E='cubic-bezier(.65,0,.25,1)',T1=620,ST=110,HOLD=900;
   curtain.querySelector('.cn').textContent=sec;
-  curtain.querySelector('.ct').innerHTML=`<em>Part ${sec} of ${SECL.length}</em>${SECL[sec-1]}<small><b class="av p${sec}">${INI[sec-1]}</b>${SPK[sec-1]} ${NOTES[cur][0]===sec-1?'continues':'takes over'}</small>`;
+  curtain.querySelector('.ct').innerHTML=`<em>Part ${sec} of ${SECL.length}</em>${SECL[sec-1]}`;
   bars.forEach(b=>b.getAnimations().forEach(a=>a.cancel()));
   bars.forEach((b,i)=>b.animate([{transform:'translateY(112%)'},{transform:'translateY(0)'}],{duration:T1,delay:i*ST,easing:E,fill:'forwards'}));
   const covered=T1+(bars.length-1)*ST;

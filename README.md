@@ -21,7 +21,7 @@ Open the live version above, or double-click `GIMBER_Dubai_presentation.html` (w
 | Home / End | first / last slide |
 
 ## The talk: five parts, one speaker each, 15 minutes
-Every speaker presents three content slides and speaks for about 2:50. Diego also opens (slides 1 and 2) and Anibal closes (slide 17). When the speaker changes, an amber "pour" covers the screen and names the next speaker.
+Every speaker presents three content slides and speaks for about 2:50. Diego also opens (slides 1 and 2) and Anibal closes (slide 17). When the speaker changes, an amber "pour" covers the screen and shows the title of the next part.
 
 | Part | Speaker | Slides | Brief questions | Planned |
 | --- | --- | --- | --- | --- |
@@ -43,7 +43,7 @@ Press **P**: the presenter view opens in its own window (current, next and previ
 - `src/notes.js`: speaker notes of every slide and the questions bank. The label of each note ("about 0:55") sets the planned time that the timer uses.
 - `src/presenter.js`, `src/presenter.css`: the presenter view (from the Lleida.net deck, in teal and amber).
 - `assets/`: photos (prepared from the draft deck and the report with `tools/prepare_assets.py`) and logos. The GIMBER wordmark is the real logo supplied by the team (`assets/logos/gimber-original.png`); the black and white versions are generated from it. `fonts/`: Charis SIL, Google Sans and Figtree (SIL Open Font License, texts in `fonts/licenses/`), plus Cairo for the Arabic name only.
-- `tools/build.py`: assembles everything into the HTML file. `tools/screenshots.py` and `tools/check_layout.py`: render the slides and check that nothing runs into the footer or the margins. `tools/make_pdf.py`: optional PDF of the final slides (needs Chrome and PyMuPDF).
+- `tools/build.py`: assembles everything into the HTML file. `tools/route_map.py`: draws the dotted map and the Halle to Dubai arc of the cover. `tools/screenshots.py` and `tools/check_layout.py`: render the slides and check that nothing runs into the footer or the margins. `tools/make_pdf.py`: optional PDF of the final slides (needs Chrome and PyMuPDF).
 
 ## Rebuild after editing
 ```bash

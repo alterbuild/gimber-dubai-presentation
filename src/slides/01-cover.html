@@ -1,46 +1,94 @@
 <style>
-.s1{padding:0}
+@property --r{syntax:'<length>';inherits:false;initial-value:1200px}
+.s1{padding:0;--fly:cubic-bezier(.45,.05,.2,1)}
 .s1 .cl{position:absolute;left:72px;top:56px;bottom:48px;width:860px;display:flex;flex-direction:column}
-.s1 .wm{width:214px;height:46px}
-.s1 .tt{font:700 118px/1.04 var(--serif);letter-spacing:-.02em;margin-top:40px;max-width:880px}
+.s1 .tt{font:700 118px/1.04 var(--serif);letter-spacing:-.02em;max-width:880px}
 .s1 .tt>span{display:inline-block}
+.s1 .tt .wm{display:inline-block;vertical-align:baseline;width:451px;height:97px;background-position:left bottom}
 .s1 .sub{font:500 32px/1.28 var(--sans);color:var(--slate);margin-top:22px;max-width:760px;text-wrap:balance}
-.s1 .route{display:block;margin-top:14px;width:790px;height:96px;overflow:visible}
-.s1 .route text{font:600 26px var(--sans);fill:var(--ink)}
-.s1 .team{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:10px;margin-top:14px}
-.s1 .team li{display:flex;align-items:center;gap:10px;padding:6px 18px 6px 6px;border-radius:999px;background:var(--mist);font:600 25px/1 var(--sans);white-space:nowrap}
 .s1 .meta{margin-top:auto;display:flex;align-items:center;gap:24px;font:500 24px/1.3 var(--sans);color:var(--slate)}
+
+/* the route: a dotted map of Europe and the Middle East that spreads out from Halle, the arc to Dubai, a bottle that flies it, the distance */
+.s1 .rt{position:relative;flex:none;width:860px;height:330px;margin-top:26px}
+.s1 .rt>svg{position:absolute;left:0;top:0;width:860px;height:330px;overflow:visible}
+.s1 .land,.s1 .fd,.s1 .tv{--t:calc(var(--d,0) * 1ms + 160ms)}
+.s1 .land{--r:1200px;-webkit-mask-image:radial-gradient(circle at 256px 23px,#000 calc(var(--r) - 120px),transparent var(--r));mask-image:radial-gradient(circle at 256px 23px,#000 calc(var(--r) - 120px),transparent var(--r));transition:--r 2.8s var(--ease) var(--t)}
+.s1.pre .land{--r:0px}
+.s1 .land path{stroke:#6FB1AC}
+.s1 .land .t2{stroke-opacity:.6}.s1 .land .t3{stroke-opacity:.33}
+.s1 .fd{transition:opacity .9s var(--ease) var(--t)}
+.s1.pre .fd{opacity:0}
+.s1 .arc{transition-duration:2.2s;transition-timing-function:var(--fly)}
+.s1 .lb{font:700 26px var(--sans);fill:var(--ink);paint-order:stroke;stroke:#fff;stroke-width:9px;stroke-linejoin:round}
+.s1 .rp{opacity:0;fill:none;stroke-width:3;transform-box:view-box;animation:rp 2.3s ease-out var(--ad,0ms) 1}
+.s1 .rp.lp{animation-iteration-count:infinite}
+@keyframes rp{0%{opacity:.8;transform:scale(1)}100%{opacity:0;transform:scale(3.6)}}
+.slide:not(.on) .rp{animation-play-state:paused!important}
+.s1 .tv{position:absolute;left:0;top:0;display:block;width:46px;height:46px;opacity:0;pointer-events:none;
+  offset-path:path("M255.8 22.7L270.3 25.5L284.6 28.7L298.7 32.1L312.7 35.7L326.4 39.6L339.8 43.7L353.1 48.1L366.1 52.7L378.9 57.5L391.5 62.5L403.8 67.7L415.9 73.1L427.7 78.7L439.4 84.5L450.8 90.4L461.9 96.5L472.8 102.8L483.6 109.2L494.1 115.8L504.3 122.5L514.4 129.3L524.3 136.3L534.0 143.4L543.5 150.6L552.8 157.9L561.9 165.3L570.8 172.8L579.6 180.4L588.2 188.1L596.7 195.9L605.0 203.8L613.1 211.8L621.2 219.8L629.1 227.9L636.8 236.1L644.4 244.4L652.0 252.7L659.4 261.0L666.7 269.5L673.8 278.0");
+  offset-anchor:50% 50%;offset-rotate:0deg;offset-distance:100%;
+  transition:offset-distance 2.2s var(--fly) var(--t);animation:tv 2.2s linear var(--t) both}
+.s1.pre .tv{offset-distance:0%}
+@keyframes tv{0%{opacity:0;transform:scale(.4)}8%{opacity:1;transform:scale(1)}88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.5)}}
+.s1 .tv svg{display:block;width:46px;height:46px}
+.s1 .km{position:absolute;left:492px;top:30px;min-width:196px;display:flex;justify-content:center;align-items:baseline;gap:8px;padding:9px 22px 10px;border-radius:999px;background:var(--amber-t);color:#6E4400;outline:4px solid #fff;font:700 32px/1.1 var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.s1 .km small{font:700 24px/1 var(--display)}
+
+/* the photo: tagline and the team */
 .s1 .cvph{position:absolute;right:0;top:0;bottom:0;width:628px;border-radius:64px 0 0 64px;clip-path:inset(0 0 0 0)}
 .s1.pre .cvph{clip-path:inset(0 0 0 100%)}
-.s1 .cvph>b{padding:150px 50px 52px;font:700 56px/1.1 var(--serif);letter-spacing:-.015em;background:linear-gradient(to top,rgba(16,40,43,.9),rgba(16,40,43,0))}
-.s1 .cvph>b small{display:block;margin-top:14px;font:600 26px/1.2 var(--sans);letter-spacing:0;opacity:.85}
+.s1 .cap{position:absolute;inset:auto 0 0 0;padding:230px 50px 46px;color:#fff;background:linear-gradient(to top,rgba(16,40,43,.96) 0,rgba(16,40,43,.9) 58%,rgba(16,40,43,0))}
+.s1 .tag{font:700 56px/1.1 var(--serif);letter-spacing:-.015em}
+.s1 .orig{margin-top:12px;font:600 26px/1.2 var(--sans);opacity:.85}
+.s1 .crew{display:grid;grid-template-columns:repeat(2,max-content);gap:10px 30px;margin-top:24px}
+.s1 .crew::before{content:"";grid-column:1/-1;width:64px;height:4px;border-radius:2px;background:var(--amber);margin-bottom:8px}
+.s1 .crew li{display:flex;align-items:center;gap:10px;font:600 25px/1.1 var(--sans);white-space:nowrap}
+.s1 .crew .av{width:36px;height:36px;font-size:13px;border:2px solid rgba(255,255,255,.75)}
 </style>
 <section class="slide s1 on" aria-label="Slide 1, title">
   <div class="cl">
-    <i class="wm b" style="--d:0" role="img" aria-label="GIMBER"></i>
-    <h1 class="tt"><span data-split="w" style="--d:150">GIMBER goes</span><br><span data-split="w" style="--d:330">to Dubai</span></h1>
+    <h1 class="tt"><span style="--d:150"><span class="vh">GIMBER goes</span><span aria-hidden="true"><span class="sw"><span class="sc" style="--k:0"><i class="wm" role="img" aria-label="GIMBER"></i></span></span> <span class="sw"><span class="sc" style="--k:1">goes</span></span></span></span><br><span data-split="w" style="--d:330">to Dubai</span></h1>
     <p class="sub b" style="--d:760">How a Belgian organic ginger concentrate becomes the grown-up drink Dubai has been missing.</p>
-    <svg class="route b" style="--d:950" viewBox="0 0 790 100" aria-label="From Halle, Belgium to Dubai, United Arab Emirates" role="img">
-      <path class="dr" pathLength="1" d="M16 58 C 240 -14, 550 -14, 774 58" fill="none" stroke="#8CC4C0" stroke-width="4" stroke-linecap="round" style="--d:1050"/>
-      <circle class="pop" cx="16" cy="58" r="11" fill="#0B6E6E" style="--d:1000"/>
-      <circle class="pop" cx="774" cy="58" r="11" fill="#E9A116" style="--d:2000"/>
-      <circle class="ring" cx="774" cy="58" r="11" fill="none" stroke="#E9A116" stroke-width="3" style="transform-origin:774px 58px;transform-box:view-box"/>
-      <circle r="9" fill="#10282B"><animateMotion dur="5.5s" repeatCount="indefinite" path="M16 58 C 240 -14, 550 -14, 774 58" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .55 1"/></circle>
-      <text class="b" x="16" y="98" style="--d:1200">Halle, Belgium</text>
-      <text class="b" x="774" y="98" text-anchor="end" style="--d:2100">Dubai, UAE</text>
-    </svg>
-    <ul class="team">
-      <li class="b z" style="--d:1300"><b class="av p1">DM</b>Diego Martínez</li>
-      <li class="b z" style="--d:1380"><b class="av p2">JT</b>Juan Tent</li>
-      <li class="b z" style="--d:1460"><b class="av p3">SJ</b>Suzanne Jean</li>
-      <li class="b z" style="--d:1540"><b class="av p4">RJ</b>Richard Jandin</li>
-      <li class="b z" style="--d:1620"><b class="av p5">AE</b>Anibal Estrada</li>
-    </ul>
+    <div class="rt" role="img" aria-label="Map from Halle, Belgium to Dubai, United Arab Emirates: 5,160 km in a straight line">
+      <svg class="land" style="--d:700" viewBox="0 0 860 330" aria-hidden="true">
+        <g fill="none" stroke-width="5" stroke-linecap="round">
+          <path class="t3" d="{{ROUTE_FAR}}"/>
+          <path class="t2" d="{{ROUTE_MID}}"/>
+          <path class="t1" d="{{ROUTE_NEAR}}"/>
+        </g>
+      </svg>
+      <svg viewBox="0 0 860 330" aria-hidden="true">
+        <defs><linearGradient id="rtg" gradientUnits="userSpaceOnUse" x1="256" y1="23" x2="674" y2="278"><stop offset="0" stop-color="#0B6E6E"/><stop offset="1" stop-color="#E9A116"/></linearGradient></defs>
+        <path class="fd" style="--d:1200" d="M255.8 22.7L270.3 25.5L284.6 28.7L298.7 32.1L312.7 35.7L326.4 39.6L339.8 43.7L353.1 48.1L366.1 52.7L378.9 57.5L391.5 62.5L403.8 67.7L415.9 73.1L427.7 78.7L439.4 84.5L450.8 90.4L461.9 96.5L472.8 102.8L483.6 109.2L494.1 115.8L504.3 122.5L514.4 129.3L524.3 136.3L534.0 143.4L543.5 150.6L552.8 157.9L561.9 165.3L570.8 172.8L579.6 180.4L588.2 188.1L596.7 195.9L605.0 203.8L613.1 211.8L621.2 219.8L629.1 227.9L636.8 236.1L644.4 244.4L652.0 252.7L659.4 261.0L666.7 269.5L673.8 278.0" fill="none" stroke="#8CC4C0" stroke-width="3" stroke-dasharray="1 9" stroke-linecap="round"/>
+        <path class="arc dr" pathLength="1" style="--d:1500" d="M255.8 22.7L270.3 25.5L284.6 28.7L298.7 32.1L312.7 35.7L326.4 39.6L339.8 43.7L353.1 48.1L366.1 52.7L378.9 57.5L391.5 62.5L403.8 67.7L415.9 73.1L427.7 78.7L439.4 84.5L450.8 90.4L461.9 96.5L472.8 102.8L483.6 109.2L494.1 115.8L504.3 122.5L514.4 129.3L524.3 136.3L534.0 143.4L543.5 150.6L552.8 157.9L561.9 165.3L570.8 172.8L579.6 180.4L588.2 188.1L596.7 195.9L605.0 203.8L613.1 211.8L621.2 219.8L629.1 227.9L636.8 236.1L644.4 244.4L652.0 252.7L659.4 261.0L666.7 269.5L673.8 278.0" fill="none" stroke="url(#rtg)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="pop" style="--d:1000" d="{{ROUTE_BE}}" fill="none" stroke="#0B6E6E" stroke-width="5" stroke-linecap="round"/>
+        <path class="pop" style="--d:3700" d="{{ROUTE_AE}}" fill="none" stroke="#E9A116" stroke-width="5.4" stroke-linecap="round"/>
+        <circle class="rp" cx="256" cy="23" r="9" stroke="#0B6E6E" style="transform-origin:256px 23px;--ad:1000ms"/>
+        <circle class="rp" cx="256" cy="23" r="9" stroke="#0B6E6E" style="transform-origin:256px 23px;--ad:1500ms"/>
+        <circle class="pop" cx="256" cy="23" r="9" fill="#0B6E6E" stroke="#fff" stroke-width="3" style="--d:900"/>
+        <circle class="rp lp" cx="674" cy="278" r="10" stroke="#E9A116" style="transform-origin:674px 278px;--ad:3900ms"/>
+        <circle class="rp lp" cx="674" cy="278" r="10" stroke="#E9A116" style="transform-origin:674px 278px;--ad:5100ms"/>
+        <circle class="pop" cx="674" cy="278" r="10" fill="#E9A116" stroke="#fff" stroke-width="3" style="--d:3700"/>
+        <text class="lb b" x="236" y="32" text-anchor="end" style="--d:1100">Halle, Belgium</text>
+        <text class="lb b" x="696" y="288" style="--d:3850">Dubai, UAE</text>
+      </svg>
+      <i class="tv" style="--d:1500" aria-hidden="true"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="21.5" fill="#10282B" stroke="#fff" stroke-width="3"/><rect x="19.4" y="8.5" width="7.2" height="4.2" rx="1" fill="#fff"/><path d="M20.4 12.7h5.2v3c0 1.8 3.9 2.7 3.9 6.6v13.2a2.6 2.6 0 0 1-2.6 2.6H19.1a2.6 2.6 0 0 1-2.6-2.6V22.3c0-3.9 3.9-4.8 3.9-6.6z" fill="#E9A116"/><rect x="16.5" y="25.5" width="13" height="7.5" fill="#fff"/></svg></i>
+      <b class="km b z" style="--d:1500"><span class="cnt" data-dur="2200" data-ease="io" style="--d:1500">5,160</span><small>km</small></b>
+    </div>
     <p class="meta b" style="--d:1750"><i class="lg lg-ed" role="img" aria-label="EDHEC Business School"></i><span>SME Marketing &amp; Growth Strategies<br>Prof. Aymeric Chouaib · October 2026</span></p>
   </div>
-  <div class="ph cvph" style="--d:200" role="img" aria-label="A bottle of GIMBER next to a glass of ginger drink">
-    <i class="im-cover-bottle" style="--pos:50% 30%"></i>
-    <div class="bubbles" data-n="18"></div>
-    <b>0% alcohol.<br>200% kick.<small>The Belgian organic ginger original</small></b>
+  <div class="ph cvph" style="--d:200">
+    <i class="im-cover-bottle" role="img" aria-label="A bottle of GIMBER next to a glass of ginger drink" style="--pos:50% 30%"></i>
+    <div class="cap">
+      <p class="tag">0% alcohol.<br>200% kick.</p>
+      <p class="orig">The Belgian organic ginger original</p>
+      <ul class="crew">
+        <li class="b z" style="--d:1500"><b class="av p1">DM</b>Diego Martínez</li>
+        <li class="b z" style="--d:1590"><b class="av p2">JT</b>Juan Tent</li>
+        <li class="b z" style="--d:1680"><b class="av p3">SJ</b>Suzanne Jean</li>
+        <li class="b z" style="--d:1770"><b class="av p4">RJ</b>Richard Jandin</li>
+        <li class="b z" style="--d:1860"><b class="av p5">AE</b>Anibal Estrada</li>
+      </ul>
+    </div>
   </div>
 </section>

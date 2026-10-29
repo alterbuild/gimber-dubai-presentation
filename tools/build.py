@@ -5,6 +5,7 @@ Reads:  src/deck.html       the shell: tokens, shared CSS, the slide engine and 
         src/slides/NN-*.html one file per slide (its own <style> and its <section class="slide">), joined in file-name order
         src/notes.js        the speaker notes of every slide (and the questions bank on the last one)
         src/presenter.js, src/presenter.css   the presenter view (second window, timer, panels), injected inside the deck
+        tools/route_map.py  the dotted map of the cover (the {{ROUTE_*}} placeholders of the first slide)
         assets/, fonts/     logos, photos and fonts that get embedded
 Output: GIMBER_Dubai_presentation.html, plus an identical index.html (the page that GitHub Pages serves)
 """
@@ -13,6 +14,8 @@ import re
 import sys
 import time
 from pathlib import Path
+
+import route_map
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC, ASSETS, FONTS = ROOT / 'src', ROOT / 'assets', ROOT / 'fonts'
@@ -65,6 +68,8 @@ def main():
         'GIMBER_WHITE': (ASSETS / 'logos' / 'gimber-white.png', 'image/png'),
     }.items():
         html = html.replace('{{%s}}' % key, b64(path, mime))
+    for key, d in route_map.placeholders().items():
+        html = html.replace('{{%s}}' % key, d)
     html = html.replace('{{BUILD}}', time.strftime('%Y%m%d-%H%M%S'))
     left = re.search(r'\{\{[A-Z_]+\}\}', html)
     assert not left, 'unreplaced placeholder: ' + left.group(0)

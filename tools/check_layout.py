@@ -22,7 +22,7 @@ addEventListener('load',function(){(document.fonts&&document.fonts.ready||Promis
   var n=i+1,foot=s.querySelector('.foot'),body=s.querySelector('.body')||s,full=s.classList.contains('s1')||s.classList.contains('s17');
   var footTop=foot?foot.getBoundingClientRect().top:900;
   s.querySelectorAll('*').forEach(function(el){
-   if(el.closest('.bubbles')||el.closest('svg')&&el.tagName!=='svg')return;
+   if(el.closest('svg')&&el.tagName!=='svg')return;
    var cs=getComputedStyle(el);if(cs.display==='none')return;
    var r=el.getBoundingClientRect();if(r.width<1||r.height<1)return;
    var name=el.tagName.toLowerCase()+(el.className&&el.className.baseVal===undefined?'.'+String(el.className).split(' ').join('.'):'');
