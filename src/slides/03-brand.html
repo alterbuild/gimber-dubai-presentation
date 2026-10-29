@@ -1,0 +1,72 @@
+<style>
+.s3 .g3{display:grid;grid-template-columns:490px 470px minmax(0,1fr);gap:30px;height:calc(100% - 100px)}
+.s3 .st{position:relative;display:grid;gap:14px;align-content:start}
+.s3 .st li{display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:start;position:relative;z-index:1}
+.s3 .sn{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--paper);box-shadow:inset 0 0 0 4px var(--teal);font:700 28px/1 var(--display);color:var(--teal)}
+.s3 .st li:last-child .sn{background:var(--amber);box-shadow:none;color:var(--ink)}
+.s3 .st h3{font:700 30px/1.1 var(--display);letter-spacing:-.02em;margin-top:2px}
+.s3 .st p{font:500 26px/1.27 var(--sans);color:var(--slate);margin-top:6px}
+.s3 .rail{position:absolute;left:26px;top:30px;bottom:96px;width:4px;border-radius:2px;background:var(--teal-m);transform-origin:50% 0}
+.s3 .pr{display:grid;gap:10px;grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(3,1fr) auto}
+.s3 .pr .ph{border-radius:var(--r-md)}
+.s3 .pr .ph>b{inset:0 0 0 auto;width:66%;display:flex;flex-direction:column;justify-content:center;padding:0 18px 0 34px;font:700 30px/1.05 var(--display);background:linear-gradient(to left,rgba(16,40,43,.93) 46%,rgba(16,40,43,0))}
+.s3 .pr .ph>b small{display:block;font:600 24px/1.2 var(--sans);margin-top:4px;opacity:.92}
+.s3 .eq{display:flex;align-items:center;gap:8px;font:700 26px/1 var(--sans);white-space:nowrap}
+.s3 .eq .chip{font-size:25px;padding:9px 14px}
+.s3 .eq>i{font:700 32px/1 var(--display);color:var(--slate)}
+.s3 .nm{display:grid;gap:14px;align-content:start}
+.s3 .nm h4{font:700 26px/1.2 var(--sans);color:var(--slate)}
+.s3 .rv{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:end;height:178px;margin-top:2px}
+.s3 .rv>div{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%}
+.s3 .rv i{display:block;width:100%;border-radius:12px 12px 5px 5px;background:var(--teal-m);height:var(--h)}
+.s3 .rv>div:last-child i{background:var(--teal)}
+.s3 .rv b{font:700 32px/1 var(--display)}
+.s3 .rv small{font:600 24px/1 var(--sans);color:var(--slate)}
+.s3 .np{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
+.s3 .np>div{text-align:center}
+.s3 .np b{display:block;font:700 40px/1 var(--display);letter-spacing:-.03em}
+.s3 .np small{display:block;font:600 24px/1.2 var(--sans);color:var(--slate);margin-top:6px}
+.s3 .np .neg b{color:var(--ember)}
+.s3 .np .pos b{color:var(--teal)}
+.s3 .smeb{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:var(--r-md);background:var(--teal-t);font:700 26px/1.2 var(--sans);color:var(--teal-d)}
+.s3 .smeb .ic{width:32px;height:32px}
+.s3 .so{margin-top:18px}
+</style>
+<section class="slide s3" data-sec="1" aria-label="Slide 3, brand and beverage">
+  <header class="top"><div class="track"></div><div class="tr"><span class="qtag">Q1 · Brand and beverage</span><i class="lg lg-ed" role="img" aria-label="EDHEC Business School"></i></div></header>
+  <h2 class="title" style="--d:0">A profitable Belgian SME with a bold product and flat revenue: GIMBER needs a new market</h2>
+  <div class="body">
+    <div class="g3">
+      <ol class="st">
+        <i class="rail gyn b" style="--d:400"></i>
+        <li class="b l" style="--d:300"><span class="sn">1</span><div><h3>Problem</h3><p>Founder Dimitri wanted a bold adult drink without alcohol</p></div></li>
+        <li class="b l" style="--d:520"><span class="sn">2</span><div><h3>Insight</h3><p>Non-drinkers were stuck with sweet sodas and juices</p></div></li>
+        <li class="b l" style="--d:740"><span class="sn">3</span><div><h3>Creation</h3><p>2017 kitchen tests; company founded in 2019 in Halle</p></div></li>
+        <li class="b l" style="--d:960"><span class="sn">4</span><div><h3>Mission</h3><p>Make the alcohol-free choice the bold one</p></div></li>
+      </ol>
+      <div class="pr">
+        <div class="ph" style="--d:450"><i class="im-recipe-n1" style="--pos:12% 55%"></i><b>N°1 Original<small>33% ginger · 6.8 g sugar a glass</small></b></div>
+        <div class="ph" style="--d:600"><i class="im-recipe-n2" style="--pos:12% 55%"></i><b>N°2 Brut<small>40% ginger · 3.6 g sugar a glass</small></b></div>
+        <div class="ph" style="--d:750"><i class="im-recipe-n3" style="--pos:12% 55%"></i><b>N°3 Lilly<small>Passion fruit, turmeric · 3.8 g</small></b></div>
+        <p class="eq b" style="--d:1100"><span class="chip am">20 ml</span><i>+</i><span class="chip">180 ml water</span><i>=</i><span class="chip ink">1 glass</span></p>
+      </div>
+      <div class="nm">
+        <h4 class="b" style="--d:600">Revenue, € million</h4>
+        <div class="rv">
+          <div><b class="b" style="--d:1000">26.5</b><i class="gy" style="--h:104px;--d:800"></i><small>2023</small></div>
+          <div><b class="b" style="--d:1100">19.1</b><i class="gy" style="--h:75px;--d:900"></i><small>2024</small></div>
+          <div><b class="b" style="--d:1200">19.5</b><i class="gy" style="--h:77px;--d:1000"></i><small>2025</small></div>
+        </div>
+        <h4 class="b" style="--d:1100">Net result, € million</h4>
+        <div class="np">
+          <div class="neg b z" style="--d:1250"><b>−8.6</b><small>2023</small></div>
+          <div class="neg b z" style="--d:1350"><b>−1.6</b><small>2024</small></div>
+          <div class="pos b z" style="--d:1450"><b><span class="mk sm" style="--md:2000ms">+2.1</span></b><small>2025</small></div>
+        </div>
+        <p class="smeb b" style="--d:1600"><svg class="ic"><use href="#i-check"/></svg>An SME: 26.7 staff, €19.5 m</p>
+      </div>
+    </div>
+    <p class="so b" style="--d:1800"><b>Why now</b>Revenue is flat at about €19.5 m and the turnaround is done: GIMBER needs a new growth market.</p>
+  </div>
+  <footer class="foot"><p class="src">Sources: gimber.com and support.gimber.com (Oct 2026); companyweb.be, Gimber SRL accounts 2023–2025. SME: fewer than 250 staff and turnover up to €50 m (EU definition, Session 1).</p><span class="folio"><i class="wm s" role="img" aria-label="GIMBER"></i>3<small>/ 17</small></span></footer>
+</section>
